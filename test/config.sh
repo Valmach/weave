@@ -120,7 +120,7 @@ weave_on() {
     host=$1
     shift 1
     [ -z "$DEBUG" ] || greyly echo "Weave on $host:$DOCKER_PORT: $@" >&2
-    CHECKPOINT_DISABLE="$CHECKPOINT_DISABLE" DOCKER_HOST=tcp://$host:$DOCKER_PORT $WEAVE "$@"
+    CHECKPOINT_DISABLE="$CHECKPOINT_DISABLE" DOCKER_HOST=tcp://$host:$DOCKER_PORT AWSVPC=1 AWSVPC_ARGS=--awsvpc $WEAVE "$@"
 }
 
 stop_weave_on() {
