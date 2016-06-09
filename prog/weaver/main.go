@@ -227,6 +227,10 @@ func main() {
 		Log.Fatalf("You must not specify an initial peer list in conjuction with --resume")
 	}
 
+	if isAWSVPC && password != "" {
+		Log.Fatalf("--awsvpc mode is not compatible with the --password option")
+	}
+
 	common.SetLogLevel(logLevel)
 
 	if justVersion {
